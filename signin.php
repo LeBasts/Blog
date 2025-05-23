@@ -1,4 +1,5 @@
 <?php 
+    $pageName = "S'inscrire";
     require_once('header.php');
     if(!empty($_POST['pseudo']) && !empty($_POST['mdp']) && !empty($_POST['mdpcheck'])){
         if($_POST['mdp'] === $_POST['mdpcheck']){

@@ -4,7 +4,9 @@ $bdd=connectBdd();
 if(session_status() === PHP_SESSION_NONE){
     session_start();
 }
-$pageName = "On verra";
+if(empty($pageName)){
+    $pageName = "Blog";
+}
 ?><!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,8 +25,7 @@ $pageName = "On verra";
             <?php else:?>
                 <a href="profil.php">Profil</a>
                 <a href="flux.php">Flux</a>
-                <a href="index.php">Index</a>
-                <a href="logout.php">Se déconnecter</a>
+                <a class="deco" href="logout.php">Se déconnecter</a>
             <?php endif;?>
         </nav>
     </div>

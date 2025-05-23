@@ -1,5 +1,6 @@
 nav{
     padding-block: 30px;
+    padding-inline: 20px;
     background-color: black;
 }
 *{
@@ -13,6 +14,7 @@ a{
     color: black;
 }
 .delete{
+    margin-top: auto;
     color: red;
 }
 header a{
@@ -29,9 +31,11 @@ body{
 #grid-profil div{
     padding: 10px;
 }
-#profil{
+#content1{
+    display: flex;
+    flex-direction: column;
     border: solid 1px purple;
-    background-color: rgb(196, 207, 217);
+    background-color: rgb(205, 165, 205);
 
 }
 #content{
@@ -63,4 +67,25 @@ p{
 }
 .wrong{
     border: solid 1px red;
+}
+.deco{
+    float: right;
+    color: red;
+}
+#content div div{
+    margin-block: 10px;
+    background-color: rgb(205, 165, 205);
+}
+#post button{
+    width: 100%;
+    padding: 10px;
+    border-style: none;
+    font-size: 20px;
+}
+ul{
+    padding: 0;
+}
+li{
+    list-style-type: none;
+    margin-inline: 10px;
 }

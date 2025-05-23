@@ -98,6 +98,7 @@ function userExist($bdd,$pseudo,$mdp){
     return $exist;
 }
 function addPost($bdd,$post,$pseudo){
+    $post = htmlspecialchars($post);
     if(!empty($post)){
         $reqVerif = $bdd->query("SELECT id FROM user WHERE pseudo = '$pseudo'");
         $userId = $reqVerif->fetch(PDO::FETCH_ASSOC)['id'];
@@ -112,19 +113,41 @@ function addPost($bdd,$post,$pseudo){
 function modifyPost(){
 
 }
-function showPost($bdd,$id){
-    if($id===NULL){
-        $req = $bdd->query("SELECT u.pseudo, p.message FROM post p JOIN user u WHERE p.id_user = u.id");
+function showPost($bdd,$id,$public){
+    if($public === NULL){
+        $req = $bdd->query("SELECT u.pseudo, p.message, u.id, p.id AS postId FROM post p JOIN user u WHERE p.id_user = u.id");
         while($rep = $req->fetch()){
-            echo "<div>".$rep['message']." - ".$rep['pseudo']."</div>";
+            if($rep['id'] === $id){
+                $href = $rep['postId'];
+                $suppr = " <a class=\"deco\" href=\"flux.php?suppr=$href\">Supprimer</a>";
+            } else {
+                $suppr = NULL;
+            }
+            echo "<div>".$rep['message']." - ".$rep['pseudo'].$suppr."</div>";
         }
     } else {
-        $req = $bdd->query("SELECT message, id_user FROM post WHERE id_user = $id");
+        $req = $bdd->query("SELECT message, id_user, id AS postId FROM post WHERE id_user = $id");
         while($rep = $req->fetch()){
-            echo "<div>".$rep['message']."</div>";
+            $href = $rep['postId'];
+            echo "<div>".$rep['message']." <a class=\"deco\" href=\"profil.php?suppr=$href\">Supprimer</a>"."</div>";
         }
     }
 }
-function deletePost(){
+function showUsers($bdd){
+    $req = $bdd->query("SELECT pseudo FROM user");
+    while($rep = $req->fetch()){
+        echo "<li>".$rep['pseudo']."</li>";
+    }
+}
+function deletePost($bdd,$user){
+    if(isset($_GET['suppr'])){
+        $postId = $_GET['suppr'];
+        $reqVerif = $bdd->query("SELECT p.id as postId, u.id as userId, u.pseudo, p.message FROM post p JOIN user u ON u.id = p.id_user WHERE p.id = $postId");
+        while($rep = $reqVerif->fetch()){
+            if($rep['pseudo'] === $user){                
+                $req = $bdd->query("DELETE FROM post WHERE post.id = '$postId'");
+            }
+        }
+    }
 
 }

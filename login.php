@@ -1,4 +1,5 @@
 <?php 
+$pageName = "Se connecter";
 require_once('header.php');
 if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
     $pseudo = $_POST['pseudo'];
