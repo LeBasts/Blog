@@ -2,8 +2,21 @@
 require_once('header.php');
 isconnected();
 ?>
-<body>
-    <h1>Post de tout le monde !</h1>
-    <div></div>
-</body>
+<main>
+    <div id="grid-profil">
+        <div id="content">
+            <div id="post">
+                <?php if(isset($_POST['inputPost'])){
+                    addPost($bdd,$_POST['inputPost'],$infos['pseudo']);
+                 } ?>
+            </div>
+            <div>
+                <h2>Post de tout le monde</h2>
+                <?php showPost($bdd,NULL);  ?>
+            </div>
+        </div>
+        <div id="ads">
+        </div>
+    </div>
+</main>
 <?php require_once('footer.php');?>

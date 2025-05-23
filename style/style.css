@@ -12,12 +12,40 @@ a{
     font-size: 24px;
     color: black;
 }
+.delete{
+    color: red;
+}
 header a{
     padding-inline: 20px;
     color: white;
 }
 body{
     background-color: aliceblue;
+}
+#grid-profil{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+#grid-profil div{
+    padding: 10px;
+}
+#profil{
+    border: solid 1px purple;
+    background-color: rgb(196, 207, 217);
+
+}
+#content{
+    border: solid 1px green;
+    grid-column: 2/5;
+}
+#content input{
+    margin-inline: inherit;
+}
+#ads{
+    border: solid 1px red;
+}
+#postarea{
+    min-height: 10em;
 }
 form{
     display: grid;
@@ -32,4 +60,7 @@ input{
 }
 p{
     margin: auto;
+}
+.wrong{
+    border: solid 1px red;
 }

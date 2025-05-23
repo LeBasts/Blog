@@ -10,16 +10,16 @@ if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
     }
 }
 ?>
-<body>
+<main>
     <?php if(empty($_SESSION['connected'])): ?>
     <form action="" method="post">
-        <input type="text" placeholder="Pseudo du compte" name="pseudo">
-        <input type="text" placeholder="Mot de passe" name="mdp">
+        <input type="text" placeholder="Pseudo du compte" name="pseudo" <?php if(isset($erreur)):?>class="wrong"<?php endif; ?>>
+        <input type="password" placeholder="Entrez votre mot de passe" name="mdp" <?php if(isset($erreur)):?>class="wrong"<?php endif; ?>>
         <p><?php if(isset($erreur)){echo $erreur;} ?></p>
         <input type="submit" value="Se connecter">
     </form>
     <?php else: 
         header('Location: profil.php');
     endif; ?>
-</body>
+</main>
 <?php require_once('footer.php');?>

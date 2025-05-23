@@ -12,6 +12,7 @@ $pageName = "On verra";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageName ?></title>
     <link rel="stylesheet" href="style\style.css">
+    <script src="main.js"></script>
 </head>
 <header>
     <div>

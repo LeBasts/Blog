@@ -2,9 +2,9 @@
 require_once('header.php');
 isconnected();
 ?>
-<body>
+<main>
     <?php
         showBdd($bdd);
     ?>
-</body>
+</main>
 <?php require_once('footer.php');?>
