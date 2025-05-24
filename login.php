@@ -13,7 +13,7 @@ if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
 ?>
 <main>
     <?php if(empty($_SESSION['connected'])): ?>
-    <form action="" method="post">
+    <form action="" method="post" id="login">
         <input type="text" placeholder="Pseudo du compte" name="pseudo" <?php if(isset($erreur)):?>class="wrong"<?php endif; ?>>
         <input type="password" placeholder="Entrez votre mot de passe" name="mdp" <?php if(isset($erreur)):?>class="wrong"<?php endif; ?>>
         <p><?php if(isset($erreur)){echo $erreur;} ?></p>

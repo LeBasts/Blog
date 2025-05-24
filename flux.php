@@ -2,6 +2,9 @@
 $pageName = "Flux";
 require_once('header.php');
 isconnected();
+if(!empty($_POST['newPost'])){
+    modifyPost($bdd,$_POST['newPost'],$_POST['previousPost']);
+}
 $infos = showBdd($bdd);
 ?>
 <main>
@@ -14,13 +17,12 @@ $infos = showBdd($bdd);
         </div>
         <div id="content">
             <div id="post">
+                <button id="buttonPost" onclick="ajouterPost()" value="Nouveau Post">Nouveau Post</button>
                 <?php if(isset($_POST['inputPost'])){
                     addPost($bdd,$_POST['inputPost'],$infos['pseudo']);
                  } ?>
-            </div>
-            <div>
                 <h2>Post de tout le monde</h2>
-                <?php showPost($bdd,$infos['id'],NULL);  ?>
+                <?php deletePost($bdd,$_SESSION['connected']) ; showPost($bdd,$infos['id'],NULL);  ?>
             </div>
         </div>
         <div id="ads">

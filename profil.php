@@ -22,8 +22,6 @@ $infos = showBdd($bdd);
                 <?php if(isset($_POST['inputPost'])){
                     addPost($bdd,$_POST['inputPost'],$infos['pseudo']);
                  } ?>
-            </div>
-            <div>
                 <h2>Mes posts</h2>
                 <?php deletePost($bdd,$_SESSION['connected']) ;showPost($bdd,$infos['id'],1);  ?>
             </div>

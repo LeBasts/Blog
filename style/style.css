@@ -51,9 +51,13 @@ body{
 #postarea{
     min-height: 10em;
 }
-form{
+#signin{
     display: grid;
     grid-template-rows: repeat(3, 1fr);
+}
+#login{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
 }
 input{
     margin-inline: 30%;
@@ -68,9 +72,22 @@ p{
 .wrong{
     border: solid 1px red;
 }
+#previousPost{
+    visibility: hidden;
+}
 .deco{
     float: right;
     color: red;
+}
+.edit{
+    padding-inline: 5px;
+    float: right;
+}
+.suppr{
+    color: red;
+}
+.modif{
+    color: blue;
 }
 #content div div{
     margin-block: 10px;
@@ -81,6 +98,9 @@ p{
     padding: 10px;
     border-style: none;
     font-size: 20px;
+}
+#post p {
+    display: inline;
 }
 ul{
     padding: 0;

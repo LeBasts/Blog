@@ -110,8 +110,14 @@ function addPost($bdd,$post,$pseudo){
         );
     }
 }
-function modifyPost(){
-
+function modifyPost($bdd,$post,$previousPost){
+    $req = $bdd->prepare("UPDATE post SET message = :post WHERE message = :ancienPost");
+    $req -> execute(
+        array(
+            "post" => $post,
+            "ancienPost" => $previousPost
+        )
+    );
 }
 function showPost($bdd,$id,$public){
     if($public === NULL){
@@ -119,17 +125,19 @@ function showPost($bdd,$id,$public){
         while($rep = $req->fetch()){
             if($rep['id'] === $id){
                 $href = $rep['postId'];
-                $suppr = " <a class=\"deco\" href=\"flux.php?suppr=$href\">Supprimer</a>";
+                $modify = " <a class=\"edit modif\" id=\"$href\" onclick=\"modify($href)\">Modifier</a>"; //href=\"flux.php?modif=$href\"
+                $suppr = " <a class=\"edit suppr\" href=\"flux.php?suppr=$href\">Supprimer</a>";
             } else {
+                $modify = NULL;
                 $suppr = NULL;
             }
-            echo "<div>".$rep['message']." - ".$rep['pseudo'].$suppr."</div>";
+            echo "<div><p>".$rep['message']."</p> <p>- ".$rep['pseudo']."</p>".$suppr.$modify."</div>";
         }
     } else {
         $req = $bdd->query("SELECT message, id_user, id AS postId FROM post WHERE id_user = $id");
         while($rep = $req->fetch()){
             $href = $rep['postId'];
-            echo "<div>".$rep['message']." <a class=\"deco\" href=\"profil.php?suppr=$href\">Supprimer</a>"."</div>";
+            echo "<div><p>".$rep['message']."</p> <a class=\"edit suppr\" href=\"profil.php?suppr=$href\">Supprimer</a>"." <a class=\"edit modif\" id=\"$href\" onclick=\"modify($href)\" >Modifier</a>"."</div>";
         }
     }
 }

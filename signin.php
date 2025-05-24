@@ -15,7 +15,7 @@
 <main>
     <!-- Ajouter une vérification du mot de passe a la création -->
     <?php if(empty($_SESSION['connected'])): ?>
-        <form action="" method="post">
+        <form action="" method="post" id="signin">
             <input type="text" placeholder="Pseudo du compte" name="pseudo" 
             <?php if(isset($state)&&$state ==="Pseudo déjà utilisé"):?>
                 class="wrong"<?php endif ?>>
