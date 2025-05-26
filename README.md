@@ -7,44 +7,32 @@
 Ce projet est un blog dynamique développé en **HTML**, **CSS**, **PHP**, **SQL** et **JavaScript**.  
 Il permet aux utilisateurs de créer un compte, se connecter et publier des articles visibles par tous.
 
-### ✅ Fonctionnalités actuelles
+### ✅ Fonctionnalités
 
 - Création de compte
-- Connexion utilisateur
+- Connexion/ Déconnexion utilisateur
 - Affichage des posts publics ou personnels
-
-### 🛠️ Fonctionnalités à venir
-
-- Modifier / Supprimer ses propres articles
-- Trier les posts par :
-  - date de publication
-  - auteur
+- Supprimer son compte / ses posts
 
 ### 🎯 Objectifs pédagogiques
 
 - Apprendre la gestion de sessions et utilisateurs en PHP
 - Manipuler une base de données MySQL
-- Structurer un projet back-end/front-end
+- Structurer un mini-projet back-end/front-end
 
 ---
 
 ## 🇬🇧 Description
 
 This is a dynamic blog platform built with **HTML**, **CSS**, **PHP**, **SQL**, and **JavaScript**.  
-Users can register, log in, and create posts.
+Users can register, log in, log out and create/ delete posts.
 
 ### ✅ Current Features
 
 - Account creation
 - User login
 - View posts by all users or only your own
-
-### 🛠️ Upcoming Features
-
-- Edit and delete own posts
-- Sort posts by:
-  - publication date
-  - author
+- Delete their account or posts
 
 ### 🎯 Learning Goals
 
