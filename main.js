@@ -10,16 +10,14 @@ function ajouterPost(){
     inputPost.setAttribute('id','postarea');
     inputPost.setAttribute('name','inputPost');
     let sendButton = document.createElement('input');
-    //sendButton.setAttribute('href','addPost.php');
     sendButton.setAttribute('type','submit');
     sendButton.setAttribute('name','submit');
-//    sendButton.setAttribute('class','send');
+    sendButton.setAttribute('id','submit');
     sendButton.value = 'Envoyer';
-    divPost.style.backgroundColor = 'pink';
-    //buttonPost.removeAttribute('onclick');
-    divPost.appendChild(formPost);
+    divPost.insertBefore(formPost,divPost.firstChild);
     formPost.appendChild(inputPost);
     formPost.appendChild(sendButton);
+    inputPost.focus();
 }
 function modify(id){
     let parent = document.getElementById(id).parentNode;
@@ -27,14 +25,13 @@ function modify(id){
     form.setAttribute('action','');
     form.setAttribute('method','post');
     parent.appendChild(form);
-    //parent.insertBefore(form, parent.firstChild);
-    document.getElementById(id).parentNode.style.backgroundColor = 'green';
     console.log("parent : "+parent.firstChild.innerText);
     let post = parent.firstChild.innerText;
     parent.firstChild.remove();
     let input = document.createElement('input');
     input.setAttribute('name','newPost');
     input.setAttribute('type','text');
+    input.setAttribute('id','newPost');
     form.appendChild(input);
     input.value = post;
     input.focus();
@@ -48,5 +45,6 @@ function modify(id){
     
     button = document.createElement('input');
     button.setAttribute('type','submit');
+    button.setAttribute('id','submit');
     form.appendChild(button);
 }

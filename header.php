@@ -1,5 +1,5 @@
 <?php
-require_once('functions\functions.php');
+require_once('functions.php');
 $bdd=connectBdd();
 if(session_status() === PHP_SESSION_NONE){
     session_start();

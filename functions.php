@@ -1,19 +1,5 @@
 <?php
-function connectBdd(){
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-
-    try{
-        $bdd = new PDO("mysql:host=$servername;dbname=blog", $username, $password);
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //echo "Connexion bdd réussie !";
-    } catch(PDOException $e) {
-        echo "Erreur : ".$e->getMessage();
-    }
-
-    return $bdd;
-}
+include('bdd.php');
 function isconnected(){
     if(session_status() === PHP_SESSION_NONE){
         session_start();
@@ -21,10 +7,6 @@ function isconnected(){
     if(empty($_SESSION['connected'])){
         header('Location: login.php');
     }
-}
-function delete($bdd, $pseudo){
-    $req = $bdd->exec("DELETE FROM user WHERE pseudo = '$pseudo'");
-    //$req = execute(['$pseudo']);
 }
 function showBdd($bdd){
     // $sql = "SELECT * FROM user";
@@ -51,15 +33,6 @@ function showBdd($bdd){
             'mdp' => $reponse3['mdp'],
             'dateInscription' => $reponse3['dateInscription']
         ];
-        // $pseudo = "bastun";
-        // $mdp = 1111;
-        // $req = $bdd->prepare("INSERT INTO user VALUES(NULL, :pseudo, :mdp, '')");
-        // $req->execute(
-        //     array(
-        //         "pseudo" => $pseudo,
-        //         "mdp" => $mdp
-        //     )
-        // );
         return $infos;
     }
 function addUser($bdd,$pseudo,$mdp){
@@ -89,11 +62,21 @@ function addUser($bdd,$pseudo,$mdp){
 }
 function userExist($bdd,$pseudo,$mdp){
     $exist = false;
-    $reqVerif = $bdd->query("SELECT * FROM user WHERE pseudo = '$pseudo'"); 
-    $hashed_pswd = $reqVerif->fetch(PDO::FETCH_ASSOC)['mdp'];
-    if(password_verify($mdp, $hashed_pswd)){
-        $exist = true;
-        echo $exist;
+    $reqVerif = $bdd->prepare("SELECT * FROM user WHERE pseudo = :pseudo"); 
+    $reqVerif->execute(
+        array(
+            "pseudo" => $pseudo
+        )
+    );
+    $reqVerif = $reqVerif->fetch();
+    if($reqVerif || is_array($reqVerif)){
+        echo "oui oui uoui";
+        $hashed_pswd = $reqVerif['mdp'];
+        echo $hashed_pswd;
+        
+        if(password_verify($mdp, $hashed_pswd)){
+                $exist = true;
+            }
     }
     return $exist;
 }
@@ -158,4 +141,12 @@ function deletePost($bdd,$user){
         }
     }
 
+}
+function delete($bdd, $pseudo){
+    $req = $bdd->exec("DELETE FROM user WHERE pseudo = '$pseudo'");
+    $id_user = $bdd->query("SELECT id FROM user WHERE pseudo = '$pseudo'");
+    $id_user = $id_user->fetch();
+    $id_user = $id_user['id'];
+    $reqPost = $bdd->exec("DELETE FROM post WHERE id_user = '$id_user'");
+    
 }

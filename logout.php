@@ -1,5 +1,5 @@
 <?php 
-require_once('functions\functions.php');
+require_once('functions.php');
 isconnected();
 // On reset Session connected
 unset($_SESSION['connected']);
